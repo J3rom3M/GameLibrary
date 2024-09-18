@@ -15,7 +15,8 @@ To start develop:
 To populate database with *"The IGDB API"* data follow this steps :
 
 1. Complete .env file with your api key
-2. Run the `symfony console gamelib:populate:database`
+2. Run the exemple command for the video game Star Wars Outlaws =>> `php bin/console app:import-games "star-wars-outlaws"
+`
 3. That's all !!
 
 #### ***Populate command options:***
