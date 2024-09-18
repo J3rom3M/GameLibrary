@@ -1,48 +1,53 @@
-<?php
+// src/Command/ImportGamesCommand.php
 
 namespace App\Command;
 
-use Symfony\Component\Console\Attribute\AsCommand;
+use App\Service\IGDBService;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Game;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Input\InputArgument;
 
-#[AsCommand(
-    name: 'app:import-games',
-    description: 'Add a short description for your command',
-)]
 class ImportGamesCommand extends Command
 {
-    public function __construct()
+    protected static $defaultName = 'app:import-games';
+    private $igdbService;
+    private $entityManager;
+
+    public function __construct(IGDBService $igdbService, EntityManagerInterface $entityManager)
     {
+        $this->igdbService = $igdbService;
+        $this->entityManager = $entityManager;
+
         parent::__construct();
     }
 
-    protected function configure(): void
+    protected function configure()
     {
         $this
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
+            ->setDescription('Import games from IGDB API and populate the database')
+            ->addArgument('search', InputArgument::REQUIRED, 'The search term for the games');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $searchTerm = $input->getArgument('search');
+        $gamesData = $this->igdbService->getGames($searchTerm);
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
+        foreach ($gamesData as $gameData) {
+            $game = new Game();
+            $game->setName($gameData['name']);
+            $game->setSummary($gameData['summary'] ?? '');
+            // Map other fields like release dates, platforms, etc.
+
+            $this->entityManager->persist($game);
         }
 
-        if ($input->getOption('option1')) {
-            // ...
-        }
+        $this->entityManager->flush();
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $output->writeln('Games imported successfully!');
 
         return Command::SUCCESS;
     }
