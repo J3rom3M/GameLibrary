@@ -1,0 +1,86 @@
+Table Jeu_Video {
+    id int [pk]
+    nom varchar
+    date_de_sortie date
+    description text
+    genres varchar
+    evaluation float
+    mode_multijoueur boolean
+    plateformes varchar
+    versions varchar
+    cover_image_url varchar
+    editeur_id int [ref: > Editeur.id]
+    developpeur_id int [ref: > Developpeur.id]
+    type varchar
+}
+
+Table Plateforme {
+    id int [pk]
+    nom varchar
+    fabricant_id int [ref: > Fabricant.id]
+    date_de_sortie date
+    type varchar
+    generation int
+}
+
+Table Fabricant {
+    id int [pk]
+    nom varchar
+    pays varchar
+    annee_de_creation int
+}
+
+Table Editeur {
+    id int [pk]
+    nom varchar
+    pays varchar
+    annee_de_creation int
+}
+
+Table Developpeur {
+    id int [pk]
+    nom varchar
+    pays varchar
+    annee_de_creation int
+}
+
+Table Utilisateur {
+    id int [pk]
+    nom_d_utilisateur varchar
+    email varchar
+    mot_de_passe varchar
+    avatar_url varchar
+    date_inscription date
+}
+
+Table Commentaire {
+    id int [pk]
+    contenu text
+    date date
+    utilisateur_id int [ref: > Utilisateur.id]
+    jeu_id int [ref: > Jeu_Video.id]
+}
+
+Table Utilisateur_Jeu_Favoris {
+    utilisateur_id int [ref: > Utilisateur.id]
+    jeu_id int [ref: > Jeu_Video.id]
+    primary key (utilisateur_id, jeu_id)
+}
+
+Table Utilisateur_Plateforme_Favoris {
+    utilisateur_id int [ref: > Utilisateur.id]
+    plateforme_id int [ref: > Plateforme.id]
+    primary key (utilisateur_id, plateforme_id)
+}
+
+Table Jeu_Video_Genre {
+    jeu_id int [ref: > Jeu_Video.id]
+    genre varchar
+    primary key (jeu_id, genre)
+}
+
+Table Jeu_Video_Plateforme {
+    jeu_id int [ref: > Jeu_Video.id]
+    plateforme_id int [ref: > Plateforme.id]
+    primary key (jeu_id, plateforme_id)
+}
