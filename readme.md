@@ -1,5 +1,5 @@
 # GameLibrary
-#### :hocho: Video Game Library :skull:
+#### 🎮 Video Game Library 🎮
 
 ### I. Get started
 To start develop:
