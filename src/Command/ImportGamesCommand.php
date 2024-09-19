@@ -1,3 +1,4 @@
+<?php
 // src/Command/ImportGamesCommand.php
 
 namespace App\Command;

@@ -1,3 +1,4 @@
+<?php
 // src/Service/IGDBService.php
 
 namespace App\Service;

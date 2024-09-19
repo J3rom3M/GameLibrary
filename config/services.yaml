@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    igdb_client_id: '%env(IGDB_CLIENT_ID)%'
+    igdb_client_secret: '%env(IGDB_CLIENT_SECRET)%'
 
 services:
     # default configuration for services in *this* file
@@ -23,6 +25,11 @@ services:
     App\Command\:
         resource: '../src/Command'
         tags: ['console.command']
+
+    App\Service\IGDBService:
+        arguments:
+            $clientId: '%igdb_client_id%'
+            $clientSecret: '%igdb_client_secret%'      
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
