@@ -64,25 +64,25 @@ CREATE TABLE `Commentaire` (
 CREATE TABLE `Utilisateur_Jeu_Favoris` (
   `utilisateur_id` int,
   `jeu_id` int,
-  `primary` key(utilisateur_id,jeu_id)
+  PRIMARY KEY (`utilisateur_id`, `jeu_id`)
 );
 
 CREATE TABLE `Utilisateur_Plateforme_Favoris` (
   `utilisateur_id` int,
   `plateforme_id` int,
-  `primary` key(utilisateur_id,plateforme_id)
+  PRIMARY KEY (`utilisateur_id`, `plateforme_id`)
 );
 
 CREATE TABLE `Jeu_Video_Genre` (
   `jeu_id` int,
   `genre` varchar(255),
-  `primary` key(jeu_id,genre)
+  PRIMARY KEY (`jeu_id`, `genre`)
 );
 
 CREATE TABLE `Jeu_Video_Plateforme` (
   `jeu_id` int,
   `plateforme_id` int,
-  `primary` key(jeu_id,plateforme_id)
+  PRIMARY KEY (`jeu_id`, `plateforme_id`)
 );
 
 ALTER TABLE `Jeu_Video` ADD FOREIGN KEY (`editeur_id`) REFERENCES `Editeur` (`id`);
