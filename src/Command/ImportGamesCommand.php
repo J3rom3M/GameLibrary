@@ -5,7 +5,7 @@ namespace App\Command;
 
 use App\Service\IGDBService;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Game;
+use App\Entity\JeuVideo;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -36,17 +36,30 @@ class ImportGamesCommand extends Command
     {
         $searchTerm = $input->getArgument('search');
         $gamesData = $this->igdbService->getGames($searchTerm);
-
-        foreach ($gamesData as $gameData) {
-            $game = new Game();
-            $game->setName($gameData['name']);
-            $game->setSummary($gameData['summary'] ?? '');
-            // Map other fields like release dates, platforms, etc.
-
-            $this->entityManager->persist($game);
+        if (empty($gamesData)) {
+            $output->writeln('No games found for the search term.');
+            return Command::SUCCESS;
         }
 
-        $this->entityManager->flush();
+        try {
+            foreach ($gamesData as $gameData) {
+                $game = new JeuVideo();
+                $game->setNom($gameData['name']);
+                $game->setDescription($gameData['summary'] ?? '');
+                // Map other fields like release dates, platforms, etc.
+    
+                $this->entityManager->persist($game);
+            }
+    
+            $this->entityManager->flush();
+
+            $this->entityManager->clear();
+
+        }
+        catch (\Exception $e) {
+            $output->writeln('An error occurred: ' . $e->getMessage());
+            return Command::FAILURE;
+        }
 
         $output->writeln('Games imported successfully!');
 
