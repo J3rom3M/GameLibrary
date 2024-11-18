@@ -44,8 +44,9 @@ class ImportGamesCommand extends Command
         try {
             foreach ($gamesData as $gameData) {
                 $game = new JeuVideo();
-                $game->setNom($gameData['name']);
+                $game->setNom($gameData['name'] ?? '');
                 $game->setDescription($gameData['summary'] ?? '');
+                // $game->setDescription($gameData['summary'] ?? '');
                 // Map other fields like release dates, platforms, etc.
     
                 $this->entityManager->persist($game);

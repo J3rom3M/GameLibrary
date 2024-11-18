@@ -31,6 +31,11 @@ class IGDBService
         ]);
 
         $data = $response->toArray();
+
+        if (!isset($data['access_token'])) {
+            throw new \Exception('Failed to fetch access token: ' . json_encode($data));
+        }
+
         $this->token = $data['access_token'];
     }
 
@@ -48,6 +53,10 @@ class IGDBService
             ],
             'body' => "search \"$searchQuery\"; fields name, summary, release_dates, platforms, genres;",
         ]);
+
+        // Log response content for debugging
+        $content = $response->getContent(false); // false to get raw response
+        file_put_contents('debug_igdb_response.json', $content);
 
         return $response->toArray();
     }
