@@ -51,7 +51,10 @@ class IGDBService
                 'Client-ID' => $this->clientId,
                 'Authorization' => 'Bearer ' . $this->token,
             ],
-            'body' => "search \"$searchQuery\"; fields name, summary, release_dates, platforms, genres;",
+            'body' => "search \"$searchQuery\"; fields name, summary, release_dates, platforms, genres, involved_companies.company.name, involved_companies.developer, involved_companies.publisher;",
+            //'body' => "search \"$searchQuery\"; fields name, summary, release_dates, platforms, genres;",
+            //'body' => "fields name, summary, release_dates, platforms, genres, involved_companies.company.name, involved_companies.developer, involved_companies.publisher;",
+
         ]);
 
         // Log response content for debugging
