@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\JeuVideoRepository;
+use App\Entity\Genre;
+use App\Entity\Plateforme;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,23 +21,25 @@ class JeuVideo
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: 'date', nullable: true)]
     private ?\DateTimeInterface $date_de_sortie = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $genres = null;
+    #[ORM\ManyToMany(targetEntity: Genre::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinTable(name: 'jeux_genres')]
+    private Collection $genres;
+
+    #[ORM\ManyToMany(targetEntity: Plateforme::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinTable(name: 'jeux_platforms')]
+    private Collection $plateformes;
 
     #[ORM\Column(nullable: true)]
     private ?float $evaluation = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $mode_multijoueur = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $plateformes = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $versions = null;
@@ -43,6 +49,56 @@ class JeuVideo
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
+
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+        $this->plateformes = new ArrayCollection();
+    }
+
+    // Getters et setters existants...
+
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): self
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): self
+    {
+        $this->genres->removeElement($genre);
+
+        return $this;
+    }
+
+    public function getPlateformes(): Collection
+    {
+        return $this->plateformes;
+    }
+
+    public function addPlateforme(Plateforme $plateforme): self
+    {
+        if (!$this->plateformes->contains($plateforme)) {
+            $this->plateformes->add($plateforme);
+        }
+
+        return $this;
+    }
+
+    public function removePlateforme(Plateforme $plateforme): self
+    {
+        $this->plateformes->removeElement($plateforme);
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -85,18 +141,6 @@ class JeuVideo
         return $this;
     }
 
-    public function getGenres(): ?string
-    {
-        return $this->genres;
-    }
-
-    public function setGenres(string $genres): static
-    {
-        $this->genres = $genres;
-
-        return $this;
-    }
-
     public function getEvaluation(): ?float
     {
         return $this->evaluation;
@@ -117,18 +161,6 @@ class JeuVideo
     public function setModeMultijoueur(?bool $mode_multijoueur): static
     {
         $this->mode_multijoueur = $mode_multijoueur;
-
-        return $this;
-    }
-
-    public function getPlateformes(): ?string
-    {
-        return $this->plateformes;
-    }
-
-    public function setPlateformes(?string $plateformes): static
-    {
-        $this->plateformes = $plateformes;
 
         return $this;
     }

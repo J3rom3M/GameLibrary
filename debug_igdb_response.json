@@ -1,58 +1,309 @@
 [
   {
-    "id": 308698,
+    "id": 222341,
     "genres": [
-      13,
-      14
+      9,
+      31
     ],
-    "name": "EA Sports FC 25",
+    "involved_companies": [
+      {
+        "id": 191475,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      },
+      {
+        "id": 191476,
+        "company": {
+          "id": 4598,
+          "name": "Bloober Team"
+        },
+        "developer": true,
+        "publisher": false
+      }
+    ],
+    "name": "Silent Hill 2",
     "platforms": [
       6,
-      48,
-      49,
-      130,
-      167,
-      169
+      167
     ],
     "release_dates": [
-      618669,
-      652118,
-      652119,
-      652120,
-      652121,
-      652122,
-      652123,
-      652124,
-      652125,
-      652126,
-      652129,
-      652130
+      600620,
+      600621,
+      652097,
+      652098
     ],
-    "summary": "EA SPORTS FC 25 gives you more ways to win for the club. Team up with friends in your favourite modes with the new 5v5 Rush, and manage your club to victory as FC IQ delivers more tactical control than ever before."
+    "summary": "Investigating a letter from his late wife, James returns to where they made so many memories - Silent Hill. What he finds is a ghost town, prowled by disturbing monsters and cloaked in deep fog. Confront the monsters, solve puzzles, and search for traces of your wife in this remake of Silent Hill 2."
   },
   {
-    "id": 309043,
+    "id": 222485,
     "genres": [
-      13,
-      14
+      31
     ],
-    "name": "EA Sports FC 25: Ultimate Edition",
+    "involved_companies": [
+      {
+        "id": 191893,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      },
+      {
+        "id": 191894,
+        "company": {
+          "id": 2831,
+          "name": "Hijinx Studios"
+        },
+        "developer": true,
+        "publisher": false
+      }
+    ],
+    "name": "Silent Hill 2",
     "platforms": [
-      6,
-      48,
-      49,
-      130,
-      167,
-      169
+      9,
+      12
     ],
     "release_dates": [
-      619412,
-      619413,
-      619414,
-      619415,
-      619416,
-      619417
+      398878,
+      398879
     ],
-    "summary": "Ultimate Edition includes:\n- EA SPORTS FC 25\n- Football Ultimate Team Player Loan Item\n- Ambassador Loan Item\n- Clubs PlayStyles Slot\n- 250000 Clubs Coins\n- Player Career Personality Points\n- 3 ICONs in Player Career\n- 5-star Coach in Manager Career\n- 5-star Youth Scout in Manager Career\n- Up to 7 Days Early Access\n- 4600 FC Points (3850 FC Points on Nintendo Switch)\n- Player Evolution Slot\n- Early Access Rush Rewards"
+    "summary": "This version of Silent Hill 2 is a remaster included in the Silent Hill HD Collection. The graphics have been re-mastered to 720p, the in-game voice-over was updated along with a re-mastering of the soundtrack and achievements/trophies were added."
+  },
+  {
+    "id": 22066,
+    "genres": [
+      31
+    ],
+    "involved_companies": [
+      {
+        "id": 191519,
+        "company": {
+          "id": 10446,
+          "name": "Team Silent"
+        },
+        "developer": true,
+        "publisher": false
+      },
+      {
+        "id": 191520,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      },
+      {
+        "id": 191521,
+        "company": {
+          "id": 20200,
+          "name": "Creature Labs"
+        },
+        "developer": false,
+        "publisher": false
+      }
+    ],
+    "name": "Silent Hill 2: Restless Dreams",
+    "platforms": [
+      6,
+      8,
+      11
+    ],
+    "release_dates": [
+      235185,
+      235186,
+      370464,
+      370465,
+      370466,
+      370467,
+      370468,
+      370469
+    ],
+    "summary": "Silent Hill 2: Restless Dreams is an updated version of of Silent Hill 2. It contains all of the content of the original version and adds several pieces of new content. The most significant is a new short scenario called Born from a Wish, where players take control of Maria from her first moments right up to where she first appears in the main game. Also included is a sixth ending to the main scenario and a minor feature that allows the player to turn off the graphical effect, which makes the game look like it was shot on cheap film stock."
+  },
+  {
+    "id": 303813,
+    "involved_companies": [
+      {
+        "id": 288337,
+        "company": {
+          "id": 4598,
+          "name": "Bloober Team"
+        },
+        "developer": true,
+        "publisher": false
+      },
+      {
+        "id": 288338,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      }
+    ],
+    "name": "Silent Hill 2: Deluxe Edition",
+    "platforms": [
+      6,
+      167
+    ],
+    "release_dates": [
+      598970,
+      598971
+    ],
+    "summary": "Deluxe Edition - Contents: SILENT HILL 2, Digital Artbook, Digital Soundtrack, and Pyramid Head Mask (pizza box)."
+  },
+  {
+    "id": 134263,
+    "genres": [
+      31
+    ],
+    "involved_companies": [
+      {
+        "id": 100163,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      },
+      {
+        "id": 100164,
+        "company": {
+          "id": 25868,
+          "name": "Gamefederation"
+        },
+        "developer": true,
+        "publisher": false
+      }
+    ],
+    "name": "Silent Hill: Mobile 2",
+    "platforms": [
+      55
+    ],
+    "release_dates": [
+      491401,
+      491402
+    ],
+    "summary": "Silent Hill: Mobile 2 is the first sequel to Silent Hill: Orphan. The game features the same first-person, point-and-click gameplay as its prequel. Players are charged with using a clever point’n’click interface to solve a series of puzzles and combating hideous creatures, as a twisting plot gradually unfolds. As the game progresses, two parallel plots gradually entwine, and the player is drawn into a dark, macabre world brought to vivid life by the game’s visuals and eerie music and effects."
+  },
+  {
+    "id": 234020,
+    "genres": [
+      25,
+      33
+    ],
+    "involved_companies": [
+      {
+        "id": 201902,
+        "company": {
+          "id": 45534,
+          "name": "BoggyTheWorm"
+        },
+        "developer": true,
+        "publisher": false
+      }
+    ],
+    "name": "Silent Hill 2: Streets of Rage",
+    "platforms": [
+      6
+    ],
+    "release_dates": [
+      441836
+    ],
+    "summary": "Streets of Rage: Silent Hill is a 2015 fan game developed by BoggyTheWorm using the OpenBoR engine. It\u0027s a beat \u0027em up that mixes Sega\u0027s Streets of Rage fighting game and Konami\u0027s Silent Hill horror game into one. This crossover uses several well-known characters such as James (Axel), Maria (Lisa), Angela (Blaze), Travis (Adam), Eddie (Bongo), Heather (Lucia from Final Fight 3), Pyramid Head, and Scarlet."
+  },
+  {
+    "id": 481,
+    "genres": [
+      9,
+      31
+    ],
+    "involved_companies": [
+      {
+        "id": 99380,
+        "company": {
+          "id": 10446,
+          "name": "Team Silent"
+        },
+        "developer": true,
+        "publisher": false
+      },
+      {
+        "id": 99381,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      }
+    ],
+    "name": "Silent Hill 2",
+    "platforms": [
+      8
+    ],
+    "release_dates": [
+      562402,
+      562403,
+      562404
+    ],
+    "summary": "The second entry in the Silent Hill franchise, Silent Hill 2 is a narrative-focused third-person psychological survival horror game with emphasis on combat, exploration and puzzle-solving elements which follows James Sunderland, a man who receives a letter, seemingly sent by his three-years-deceased wife Mary, in which he is beckoned to the fog-ridden town of Silent Hill at the same time as numerous other people troubled by their past."
+  },
+  {
+    "id": 43277,
+    "genres": [
+      31
+    ],
+    "involved_companies": [
+      {
+        "id": 100066,
+        "company": {
+          "id": 10446,
+          "name": "Team Silent"
+        },
+        "developer": true,
+        "publisher": false
+      },
+      {
+        "id": 100067,
+        "company": {
+          "id": 129,
+          "name": "Konami"
+        },
+        "developer": false,
+        "publisher": true
+      }
+    ],
+    "name": "Silent Hill 2: Special 2 Disc Set",
+    "platforms": [
+      8
+    ],
+    "release_dates": [
+      197374,
+      197375
+    ],
+    "summary": "Exclusive to PAL territories, this edition of Silent Hill 2 includes the game and a bonus DVD featuring various behind-the-scenes materials, interview with developers, Konami game trailers and more. The package is digipack instead of standard PS2 case."
+  },
+  {
+    "id": 222334,
+    "genres": [
+      31
+    ],
+    "name": "Silent Hill 2: Enhanced Edition",
+    "platforms": [
+      6
+    ],
+    "release_dates": [
+      398098
+    ],
+    "summary": "Silent Hill 2: Enhanced Edition is a project of enhancement packages that makes the PC version of Silent Hill 2 compatible with modern hardware and playable in widescreen aspect ratios, while improving visuals, audio, and bugs. Examples of what Silent Hill 2: Enhanced Edition provides are: The use of a widescreen camera; high definition resolutions; upscaled fonts and 2D images; PlayStation 2 quality audio, fog, and shadows; restored post-processing effects; better controller support; and much more. Made by a collaborative team of programmers, modders, and artistse."
   }
 ]

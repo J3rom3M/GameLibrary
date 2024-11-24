@@ -63,4 +63,24 @@ class IGDBService
 
         return $response->toArray();
     }
+
+    //  Méthode dans IGDBService pour récupérer les noms des genres depuis IGDB
+    public function getGenres(array $genreIds): array
+    {
+        if (!$this->token) {
+            $this->fetchAccessToken();
+        }
+    
+        $ids = implode(',', $genreIds);
+    
+        $response = $this->client->request('POST', 'https://api.igdb.com/v4/genres', [
+            'headers' => [
+                'Client-ID' => $this->clientId,
+                'Authorization' => 'Bearer ' . $this->token,
+            ],
+            'body' => "fields id, name; where id = ($ids);",
+        ]);
+    
+        return $response->toArray();
+    }    
 }

@@ -6,6 +6,8 @@ namespace App\Command;
 use App\Service\IGDBService;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\JeuVideo;
+use App\Entity\Genre;
+use App\Entity\Plateforme;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -48,6 +50,20 @@ class ImportGamesCommand extends Command
                 $game->setDescription($gameData['summary'] ?? '');
                 // $game->setDescription($gameData['summary'] ?? '');
                 // Map other fields like release dates, platforms, etc.
+
+                // Genres
+                if (!empty($gameData['genres'])) {
+                    foreach ($gameData['genres'] as $genreId) {
+                        $genreName = $this->getGenreNameById($genreId); // Utilisez un mapping ou une requête
+                        $genre = $this->entityManager->getRepository(Genre::class)->findOneBy(['name' => $genreName]);
+                        if (!$genre) {
+                            $genre = new Genre();
+                            $genre->setName($genreName);
+                            $this->entityManager->persist($genre);
+                        }
+                        $game->addGenre($genre);
+                    }
+                }                
     
                 $this->entityManager->persist($game);
             }
@@ -63,7 +79,19 @@ class ImportGamesCommand extends Command
         }
 
         $output->writeln('Games imported successfully!');
-
         return Command::SUCCESS;
     }
+
+    // Ajoutez la méthode ici, après les autres méthodes publiques ou protégées
+    private function getGenreNameById(int $genreId): string
+    {
+        // Requête à l'API IGDB pour récupérer le nom du genre
+        $response = $this->igdbService->getGenres([$genreId]); // Vous devez implémenter cette méthode dans IGDBService
+        if (empty($response) || !isset($response[0]['name'])) {
+            throw new \Exception("Genre name not found for ID $genreId");
+        }
+
+        return $response[0]['name'];
+    }
+
 }
