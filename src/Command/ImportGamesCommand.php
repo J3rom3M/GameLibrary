@@ -1,5 +1,4 @@
 <?php
-// src/Command/ImportGamesCommand.php
 
 namespace App\Command;
 
@@ -45,32 +44,41 @@ class ImportGamesCommand extends Command
 
         try {
             foreach ($gamesData as $gameData) {
+            // Vérifier si le jeu existe déjà
+            $existingGame = $this->entityManager->getRepository(JeuVideo::class)->findOneBy(['nom' => $gameData['name']]);
+            if ($existingGame) {
+                $output->writeln("Game '{$gameData['name']}' already exists. Skipping.");
+                continue;
+            }
+
+                // Créer une nouvelle instance de JeuVideo
                 $game = new JeuVideo();
                 $game->setNom($gameData['name'] ?? '');
                 $game->setDescription($gameData['summary'] ?? '');
-                // $game->setDescription($gameData['summary'] ?? '');
-                // Map other fields like release dates, platforms, etc.
 
-                // Genres
+                // Ajouter les genres
                 if (!empty($gameData['genres'])) {
                     foreach ($gameData['genres'] as $genreId) {
-                        $genreName = $this->getGenreNameById($genreId); // Utilisez un mapping ou une requête
+                        $genreName = $this->getGenreNameById($genreId);
                         $genre = $this->entityManager->getRepository(Genre::class)->findOneBy(['name' => $genreName]);
                         if (!$genre) {
                             $genre = new Genre();
                             $genre->setName($genreName);
                             $this->entityManager->persist($genre);
                         }
-                        $game->addGenre($genre);
+                        if (!$game->getGenres()->contains($genre)) {
+                            $game->addGenre($genre);
+                        }
                     }
                 }                
     
+                // Persister le jeu
                 $this->entityManager->persist($game);
             }
     
+            // Sauvegarder en base de données
             $this->entityManager->flush();
-
-            $this->entityManager->clear();
+            //$this->entityManager->clear();
 
         }
         catch (\Exception $e) {
@@ -79,14 +87,16 @@ class ImportGamesCommand extends Command
         }
 
         $output->writeln('Games imported successfully!');
+        $output->writeln("Added genre '{$genre->getName()}' to game '{$game->getNom()}'.");
+
         return Command::SUCCESS;
     }
 
-    // Ajoutez la méthode ici, après les autres méthodes publiques ou protégées
+    // Méthode pour obtenir le nom des genres en fonction des ID
     private function getGenreNameById(int $genreId): string
     {
         // Requête à l'API IGDB pour récupérer le nom du genre
-        $response = $this->igdbService->getGenres([$genreId]); // Vous devez implémenter cette méthode dans IGDBService
+        $response = $this->igdbService->getGenres([$genreId]);
         if (empty($response) || !isset($response[0]['name'])) {
             throw new \Exception("Genre name not found for ID $genreId");
         }

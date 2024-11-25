@@ -27,7 +27,7 @@ class JeuVideo
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Genre::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Genre::class, cascade: ['persist'], fetch: 'EAGER')]
     #[ORM\JoinTable(name: 'jeux_genres')]
     private Collection $genres;
 
