@@ -1,0 +1,9 @@
+/node_modules
+.DS_Store
+Thumbs.db
+# est un commentaire, sera ignoré
+*.tmp # tous les fichiers terminant par '.tmp' seront ignorés
+!important.tmp # sauf le fichier important.tmp, qui lui sera commité
+/node_modules # tout ce qui se trouve dans le dossier 'node_modules' sera ignoré
+debug?.log # le '?' remplace *un* caractère. Ainsi seront ignorés debug0.log, comme debug9.log
+www/**/*.apk # tous les fichiers .apk qui se trouvent dans n'importe quel dossier à partir de www/ seront ignorés
